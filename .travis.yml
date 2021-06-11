@@ -7,3 +7,15 @@ before_install:
 
 script:
   - docker run -e CI=true tbellerose/learn-docker-react npm run test
+
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-2"
+  app: "learn-docker-react"
+  env: "Learndockerreact-env"
+  bucket_name: "elasticbeanstalk-us-east-2-148637922700"
+  bucket_path: "learn-docker-react"
+  on:
+    branch: main
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_ACCESS_SECRET
